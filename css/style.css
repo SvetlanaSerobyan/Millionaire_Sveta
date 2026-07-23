@@ -1,0 +1,49 @@
+*{
+    box-sizing: border-box;
+}
+
+img{
+    width: 100%;
+}
+
+body{
+    margin: 0;
+    color: rgb(22, 74, 74);
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+}
+
+.start-btn{
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 18px;
+    color: rgb(103, 179, 188);
+    background: rgb(180, 230, 214);
+    text-transform: uppercase;
+    box-shadow: 0 0 10px 0px rgb(158, 224, 240);
+    display: block;
+    margin: auto;
+    margin-top: 250px;
+    transition: 1s;
+}
+
+.information{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background: rgb(180, 230, 214);
+    color: rgb(103, 179, 188);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 10px 0px rgb(158, 224, 240);
+    z-index: 10;
+}
+
+.start-btn:hover{
+    color: rgb(158, 224, 240);
+    background: none;
+}
