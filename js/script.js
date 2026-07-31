@@ -4,10 +4,10 @@ let mainGame = document.querySelector('.game-block'),
   gameWrapper = document.querySelector('.game-wrap'),
   startBtn = document.querySelector('.start-btn'),
   endBtn = document.querySelector('.end-btn'),
-  btnAnswers = document.querySelector('.answer'),
-  blocksQuestion = document.querySelector('.question'),
-  helpBtns = document.querySelector('.hints-help'),
-  winBlock = document.querySelector('.wins-block'),
+  btnAnswers = document.querySelectorAll('.answer'),
+  blockQuestion = document.querySelectorAll('.question'),
+  helpBtns = document.querySelectorAll('.hints-help'),
+  winBlock = document.querySelectorAll('.wins-block'),
   helpFifty = document.querySelector('.fifty-fifty'),
   helpHall = document.querySelector('.hall-help'),
   helpFriend = document.querySelector('.call-friend'),
@@ -18,12 +18,10 @@ let mainGame = document.querySelector('.game-block'),
 let changeQuestion = document.getElementById('hintBox')
 let extraQuestion = document.getElementById('extra')
 let flagExtra = true
-
 let endB = document.getElementById('end')
 
 const popup = document.getElementById('rulesPopup')
 const showBtn = document.getElementById('showRules')
-
 
 let aiExplainBlock = document.getElementById('aiExplainBlock')
 let aiExplainText = document.getElementById('aiExplainText')
@@ -46,7 +44,6 @@ popup.addEventListener('click', function () {
 const generalMusic = new Audio('./music/end-sound.mp3')
 const questionSong = new Audio('./music/questions-sound.mp3')
 let count = 0
-
 let fixed1 = new Audio('./music/8,000-question.mp3')
 let incorrectSoundFlag = false
 
@@ -54,10 +51,7 @@ generalMusic.loop = true
 
 window.addEventListener('click', () => {
   generalMusic.play()
-}, {
-  once: true
-})
-
+}, { once: true })
 
 
 endBtn.addEventListener('click', () => {
@@ -165,16 +159,19 @@ startBtn.addEventListener('click', () => {//Խաղի սկիզբը կոճակի �
 
 
 btnAnswers.forEach((btnAnswer) => {
+
   btnAnswer.addEventListener('click', (e) => {
 
-    let numberQuestion = btnAnswer.parentElement.parentElement.classList[1]
+    let numberQuestion = btnAnswer.parentElement.parentElement.classList[1];
     let userAnswer = e.target.innerText
     let blockAnswer = e.target
-    let blockQuestionParentElement = blockAnswer.parentElement
+    let blockQuestionParentElement = blockAnswer.parentElement;
 
     blockQuestionParentElement.classList.add('block-event')
+
     correctnessAnswer(numberQuestion, userAnswer, blockAnswer, blockQuestionParentElement)
-  })
+
+  });
 })
 
 
@@ -466,7 +463,7 @@ function getRemoveClassName(){
 }
 
 function getBlockBefore(block){
-  block.insertAdjacentHTML('beforbegin',`<div class="user-win animate__animated animate__fadeIn"><p>Ձեր հաղթանակը</p><p>"${getGarantWin()}"</p></div>` )
+  block.insertAdjacentHTML('beforebegin',`<div class="user-win animate__animated animate__fadeIn"><p>Ձեր հաղթանակը</p><p>"${getGarantWin()}"</p></div>` )
 }
 
 function getGarantWin(){
@@ -500,25 +497,26 @@ function getBlockAnswer(blockChildrenElem, numberQuestion) {
 
 // ֆունկցիան նախատեսված է հայտնվող հարցի բլոկը թաքցնելու և նոր հարցի բլոկը ցույց տալու համար։
 function getBlockQuestion() {
-  for (let i = 0; i <= blocksQuestion.length; i++) {
+  for (let i = 0; i <= blockQuestion.length; i++) {
 
-    if (i === blocksQuestion.length - 1) {//Եթե i-ն հասել է վերջին հարցի բլոկին,
+    if (i === blockQuestion.length - 1) {//Եթե i-ն հասել է վերջին հարցի բլոկին,
       // ապա կանչվում է getWinBlock(i + 1) որը,ցույց կտա հաղթանակի բլոկը։
       getWinBlock(i + 1);
       return;
     }
-    if (blocksQuestion[i].classList.contains('question-active')) {
-      blocksQuestion[i].classList.add('animate__fadeOut');//ավելանում է հետևյալ անունով կլասը
-      blocksQuestion[i].classList.remove('question-active', 'animate__animated', 'animate__pulse');//հեռացվում է կլասը
+    if (blockQuestion[i].classList.contains('question-active')) {
+      blockQuestion[i].classList.add('animate__fadeOut');//ավելանում է հետևյալ անունով կլասը
+      blockQuestion[i].classList.remove('question-active', 'animate__animated', 'animate__pulse');//հեռացվում է կլասը
 
       setTimeout(() => {
-        blocksQuestion[++i].classList.add('question-active', 'animate__animated', 'animate__pulse');
+        blockQuestion[++i].classList.add('question-active', 'animate__animated', 'animate__pulse');
         getWinBlock(i);
       }, 200);
       return;
     }
   }
 }
+
 
 
 const answers = {
@@ -532,10 +530,10 @@ const answers = {
   question_8: "Բ։ Ընձենավորը",
   question_9: "Բ։ Ալտիտուդ",
   question_10: "Ա։ Քառանիստ",
-  question_11: "Բ։ Սպիդոմետր",
+  question_11: "Ա։ Բանագնաց",
   question_12: "Բ։ Ծածկագրման մեքենա",
   question_13: "Գ։ Աննա Կարենինա",
-  question_14: "Բ։ Սպիդոմետր",
-  question_15: "Բ։ Սպիդոմետր",
-  question_extra: "Դ։ Երազների"
+  question_14: "Դ։ Միջուկային զինաթափման",
+  question_15: "Գ։ Կարիք",
+  question_extra: "Գ։ Վիճակը նետված է"
 }
